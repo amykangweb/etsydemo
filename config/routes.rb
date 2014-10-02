@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :listings do
-    resources :orders
+    resources :orders, only: [:new, :create]
   end
 
   get 'pages/about'
@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'pages/contact'
 
   match '/seller', to: 'listings#seller', via: 'get'
+  match '/sales', to: 'orders#sales', via: 'get'
+  match '/purchases', to: 'orders#purchases', via: 'get'
 
   root 'listings#index'
 
